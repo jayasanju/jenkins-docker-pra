@@ -1,5 +1,5 @@
 node {
-    def dockerHubCredentials = 'akki'
+    def dockerHubCredentials = 'dockercre'
     def dockerImageName = "konthamjaya/nginx"
     def dockerImageTag = "latest"
     def dockerHubRegistry = 'https://index.docker.io/v1/'
@@ -10,7 +10,7 @@ node {
     }
  
    stage('Build and Push Docker Image') {
-        withCredentials([usernamePassword(credentialsId: 'jaya', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockercre', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
             sh "docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
             script {
                 docker.withRegistry(dockerHubRegistry, dockerCredentialsId ) {
