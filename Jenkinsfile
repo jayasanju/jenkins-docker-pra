@@ -1,5 +1,5 @@
 node {
-    def dockerCredentialsId = 'akki'
+    def dockerHubCredentials = 'akki'
     def dockerImageName = "konthamjaya/nginx"
     def dockerImageTag = "latest"
     def dockerHubRegistry = 'https://index.docker.io/v1/'
