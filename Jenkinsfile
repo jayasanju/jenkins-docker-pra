@@ -10,8 +10,8 @@ node {
     }
  
    stage('Build and Push Docker Image') {
-        withCredentials([[$class: 'SecretTextBinding', credentialsId: 'akki', variable: 'DOCKER_HUB_TOKEN']]) {
-            sh "docker login -u _token -p ${DOCKER_HUB_TOKEN}"
+        withCredentials([usernamePassword(credentialsId: 'akki', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+            sh "docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
             script {
                 docker.withRegistry(dockerHubRegistry, dockerCredentialsId ) {
                     def customImage = docker.build("${dockerImageName}:${dockerImageTag}", ".")  // Specify the Dockerfile location as "."
@@ -21,3 +21,4 @@ node {
         }
 }
 }
+
