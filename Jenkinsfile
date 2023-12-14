@@ -10,7 +10,7 @@ node {
     }
  
    stage('Build and Push Docker Image') {
-        withCredentials([[$class: 'SecretTextBinding', credentialsId: dockerCredentialsId, variable: 'DOCKER_HUB_TOKEN']]) {
+        withCredentials([[$class: 'SecretTextBinding', credentialsId: 'akki', variable: 'DOCKER_HUB_TOKEN']]) {
             sh "docker login -u _token -p ${DOCKER_HUB_TOKEN}"
             script {
                 docker.withRegistry(dockerHubRegistry, dockerCredentialsId ) {
